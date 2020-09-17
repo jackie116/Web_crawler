@@ -5,5 +5,5 @@ ex.
 ```re
 eeeAiiZuuuuAoooZeeee
 ```
-```re A.*Z``` 會找到 ```re AiiZuuuuAoooZ```  
-```re A.*?Z``` 會找到 ```re AiiZ```和```re AoooZ```
+```A.*Z``` 會找到 ```AiiZuuuuAoooZ```  
+```A.*?Z``` 會找到 ```AiiZ```和```AoooZ```
