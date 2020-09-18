@@ -19,4 +19,3 @@ eeAiiZooAuuZZeeeZZfff
 ```A.*?ZZ```找出```AiiZooAuuZZ```  
 ```A.*ZZ```找出```AiiZooAuuZZeeeZZ```  
 
-*推薦一個能測試re的網站: https://rubular.com/r/N5yX9LTWTo
