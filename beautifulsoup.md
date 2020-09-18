@@ -2,9 +2,8 @@
 
 * [解析器](#1)
 
-
-# 解析器 
 <span id='1'>
+# 解析器 
 安裝lxml 解析器:```pip install lxml```  
 python標準庫內有```html.parser```，但 lxml解析器(需安裝C)較快。  
 使用: 
