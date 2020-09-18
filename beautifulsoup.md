@@ -1,5 +1,7 @@
 https://www.crummy.com/software/BeautifulSoup/bs4/doc/  
 
+- [解析器][]
+[解析器]:
 # 解析器  
 安裝lxml 解析器:```pip install lxml```  
 python標準庫內有```html.parser```，但 lxml解析器(需安裝C)較快。  
