@@ -43,3 +43,46 @@ print(soup.b.prettify())
 #  <!--Hey, buddy. Want to buy a used parser?-->
 # </b>
 ```
+
+### Navigating the tree
+```
+soup.head
+# <head><title>The Dormouse's story</title></head>
+
+soup.title
+# <title>The Dormouse's story</title>
+
+soup.body.b
+# <b>The Dormouse's story</b>
+
+soup.a
+# <a class="sister" href="http://example.com/elsie" id="link1">Elsie</a>
+```  
+上面方法都只能取得第一個找的值，要取得全部要用 Seaching the tree，像 ```find_all()```  
+#### 子節點
+##### .contents 和 .children
+tag 的 ```.contents```可將tag 的子節點以list輸出，字串沒有```.contents```，因為不會有子節點。  
+不想取得list，也可用```.children```生成器(generator)來循環(iterate)。  
+
+##### .descendants
+```.contents```和```.children```只能取得子節點，  
+```.descendants```則能取得所有子孫節點。
+
+##### .string
+如果tag只有一個為 NavigableString 的 child 或只含一個tag，而tag下也只有一個為 NavigableString 的 child，  
+則能用```.string```直接取得字串。
+
+##### .strings 和 .stripped_strings
+如tag包含多個字串，可用```.strings```來循環獲取，而```.stripped_strings```則可取得去除空格和空行後的字串。
+
+#### 父節點
+##### .parent
+取得父節點
+
+##### .parents
+可循環取得所有祖先節點
+
+#### 兄弟節點
+##### .next_sibling 和 .previous_sibling
+可取的前後兄弟節點，  
+但要注意在實際文檔中，
