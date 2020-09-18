@@ -18,7 +18,7 @@
     * find()
     * 其他
     * CSS selectors
-    
+* [modifying the tree](#modifying-the-tree)
 
 # 解析器
 安裝lxml 解析器:```pip install lxml```  
@@ -176,7 +176,7 @@ soup.title(string=True)
 ```find_all()```找不到值時返回空字串，```find()```返回```None```。  
 上面提到的```find_all()```簡寫，靠的就是多次呼叫```find()```
 
-### find_parents 和 find_parent
+### find_parents() 和 find_parent()
 ### find_next_siblings() 和 find_next_sibling()
 ### find_previous_siblings() 和 find_previous_sibling()
 ### find_all_next() 和 find_next()
@@ -233,3 +233,53 @@ soup.select_one(".sister")
 ```
 
 # Modifying the tree 
+### 改tag名稱和屬性
+```
+tag.name = "blockquote"
+tag['class'] = 'verybold'
+tag['id'] = 1
+del tag['class']
+```  
+### 改 .string
+```tag.string = "New link text."```  
+
+### append()
+可用```Tag.append()```加tag的contents:  
+```
+soup = BeautifulSoup("<a>Foo</a>")
+soup.a.append("Bar")
+soup
+# <html><head></head><body><a>FooBar</a></body></html>
+soup.a.contents
+# [u'Foo', u'Bar']
+```  
+
+### extend()
+一次追加多值
+```
+soup = BeautifulSoup("<a>Soup</a>")
+soup.a.extend(["'s", " ", "on"])
+soup
+# <html><head></head><body><a>Soup's on</a></body></html>
+soup.a.contents
+# [u'Soup', u''s', u' ', u'on']
+```
+### NavigableString() 和 .new_tag()
+```
+new_string = NavigableString(" there")
+tag.append(new_string)
+```
+如果要加comment也是利用 ```NavigableString()```的子類:
+```
+from bs4 import Comment
+new_comment = Comment("Nice to see you.")
+tag.append(new_comment)
+```
+如果是要新加tag，可用```BeautifulSoup.new_tag()```:  
+```
+new_tag = soup.new_tag("a", href="http://www.example.com")
+original_tag.append(new_tag)
+
+new_tag.string = "Link text."
+```
+### insert()
