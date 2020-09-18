@@ -1,13 +1,24 @@
 [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)  
 
-[toc]
-
-
 * [解析器](#解析器)
 * [使用](#使用)
 * [物件種類](#物件種類)
     * Tag
     * NavigableString
+    * BeautifulSoup
+    * Comment
+* [Navigating the tree](#navigating-the-tree)
+    * 子節點
+    * 父節點
+    * 兄弟節點
+    * 回退和前進
+* [Searching the tree](#searching-the-tree)
+    * filters
+    * find_all()
+    * find()
+    * 其他
+    * CSS selectors
+    
 
 # 解析器
 安裝lxml 解析器:```pip install lxml```  
@@ -99,7 +110,7 @@ tag 的 ```.contents```可將tag 的子節點以list輸出，字串沒有```.con
 ### .next_siblings 和 .previous_siblings
 可循環取得前後所有兄弟節點
 
-# 回退和前進
+## 回退和前進
 ### .next_element 和 .previous_element
 指向解析過程中下一個或前一個被解析對象(字串或tag)。  
 
