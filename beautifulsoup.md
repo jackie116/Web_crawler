@@ -1,4 +1,4 @@
-https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/  
+https://www.crummy.com/software/BeautifulSoup/bs4/doc/  
 
 # 解析器  
 安裝lxml 解析器:```pip install lxml```  
@@ -103,4 +103,113 @@ tag 的 ```.contents```可將tag 的子節點以list輸出，字串沒有```.con
 使用 ```True```取得所有。  
 也可以自己寫function
 
-### find_all()
+## find_all()
+```find_all(name, attrs, recursive, string, limit, **kwargs)```  
+##### name參數
+##### keyword參數
+有些tag屬性在搜索中不能用，如html5中的 data-* 屬性:  
+```
+data_soup = BeautifulSoup('<div data-foo="value">foo!</div>')
+data_soup.find_all(data-foo="value")
+# SyntaxError: keyword can't be an expression
+```
+須改用 ```find_all()``` 的 ```attrs```參數定義一個dictionary參數來搜尋包含特殊屬性的tag:  
+```
+data_soup.find_all(attrs={"data-foo": "value"})
+# [<div data-foo="value">foo!</div>]
+```
+*find_all()有name屬性，因此也不能當成keyword來使用，需用attrs方式搜尋*
+
+##### css搜尋
+*class在python中視保留字，因此要用class_*
+```soup.find_all("a", class_="sister")```  
+```class_``` 同樣接受不同filter
+
+當你要搜尋多值的CSS class時，也能用CSS selector:
+```
+css_soup.select("p.strikeout.body")
+# [<p class="body strikeout"></p>]
+```
+
+##### string參數
+搜尋字串用
+
+##### limit參數
+可以設定符合條件的返回數量
+
+##### recursive參數
+find_all()會返回所有descendants，如果你只想獲得direct child，可以設定```recursive=False```  
+
+### find_all()簡寫
+```
+soup.find_all("a")
+soup("a")
+
+soup.title.find_all(string=True)
+soup.title(string=True)
+```
+
+## find()
+```find( name , attrs , recursive , string , **kwargs )```  
+```find_all()```會找查所有符合的tag，如果只要一個時，能設```limit=1```或用 ```find()```。  
+差別是```find_all()```返回list，```find()```只返回結果。  
+```find_all()```找不到值時返回空字串，```find()```返回```None```。  
+上面提到的```find_all()```簡寫，靠的就是多次呼叫```find()```
+
+### find_parents 和 find_parent
+### find_next_siblings() 和 find_next_sibling()
+### find_previous_siblings() 和 find_previous_sibling()
+### find_all_next() 和 find_next()
+### find_all_previous() 和 find_previous()
+### CSS selectors
+逐層找查   
+```
+soup.select("body a")
+soup.select("html head title")
+```  
+直接子標籤    
+```
+soup.select("head > title")
+soup.select("p > #link1")
+soup.select("body > a")
+```  
+兄弟節點標籤  
+```
+soup.select("#link1 ~ .sister")
+# [<a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>,
+#  <a class="sister" href="http://example.com/tillie"  id="link3">Tillie</a>]
+
+soup.select("#link1 + .sister")
+# [<a class="sister" href="http://example.com/lacie" id="link2">Lacie</a>]
+```  
+class名找查  
+```
+soup.select(".sister")
+soup.select("[class~=sister]")
+```  
+tag的id找查  
+```
+soup.select("#link1")
+soup.select("a#link2")
+```  
+多CSS元素查詢  
+```
+soup.select("#link1,#link2")
+```  
+通過是否存在某個屬性找查
+```
+soup.select('a[href]')
+```  
+通過屬性值查詢  
+```
+soup.select('a[href="http://example.com/elsie"]')
+soup.select('a[href^="http://example.com/"]')
+soup.select('a[href$="tillie"]')
+soup.select('a[href*=".com/el"]')
+```  
+返回找到的第一個元素  
+```
+soup.select_one(".sister")
+```
+
+# Modifying the tree 
