@@ -320,7 +320,12 @@ print(i_tag.parent)
 # None
 ```  
 ### decompose()
+將tag和其content一起完全刪除
+```i_tag.decompose()```  
 ### replace_with()
+移除舊的tag或string換成新的
+```a_tag.i.replace_with(new_tag)```
+
 ### wrap()
 ### unwrap()
 ### smooth()
