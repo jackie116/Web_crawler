@@ -19,6 +19,21 @@
     * 其他
     * CSS selectors
 * [modifying the tree](#modifying-the-tree)
+    * 改tag名稱和屬性
+    * 改.string
+    * append()
+    * extend()
+    * NavigableString() 和 .new_tag()
+    * insert()
+    * insert_before() 和 insert_after()
+    * clear()
+    * extract()
+    * decompose()
+    * replace_with()
+    * wrap()
+    * unwrap()
+    * smooth()
+* [Output](#output)
 
 # 解析器
 安裝lxml 解析器:```pip install lxml```  
@@ -283,3 +298,30 @@ original_tag.append(new_tag)
 new_tag.string = "Link text."
 ```
 ### insert()
+像append()一樣插入值，但可指定插入位置。  
+```tag.insert(1, "but did not endorse ")```  
+### insert_before() 和 insert_after()
+插入在之前或之後  
+```
+soup.b.string.insert_before(tag)
+soup.b.i.insert_after(" you ", div)
+soup.b
+# <b><i>Don't</i> you <div>ever</div> stop</b>
+```  
+### clear()
+```tag.clear()``` 移除tag的contents。  
+### extract()
+移除tag或string，並返回被移除的值  
+```
+i_tag = soup.i.extract()
+i_tag
+# <i>example.com</i>
+print(i_tag.parent)
+# None
+```  
+### decompose()
+### replace_with()
+### wrap()
+### unwrap()
+### smooth()
+# Output
