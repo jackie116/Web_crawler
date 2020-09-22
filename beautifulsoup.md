@@ -34,6 +34,8 @@
     * unwrap()
     * smooth()
 * [Output](#output)
+    * prettify()
+    * Non-pretty printing
 
 # 解析器
 安裝lxml 解析器:```pip install lxml```  
