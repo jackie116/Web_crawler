@@ -320,13 +320,24 @@ print(i_tag.parent)
 # None
 ```  
 ### decompose()
-將tag和其content一起完全刪除
+將tag和其content一起完全刪除  
 ```i_tag.decompose()```  
 ### replace_with()
-移除舊的tag或string換成新的
-```a_tag.i.replace_with(new_tag)```
-
+移除舊的tag或string換成新的  
+```a_tag.i.replace_with(new_tag)```  
 ### wrap()
+把元素包入指定的tag中  
+```
+soup.p.string.wrap(soup.new_tag("b"))
+# <b>I wish I was bold.</b>
+```  
 ### unwrap()
+移除元素的tag，unwrap()會返回被移除的值  
+```a_tag.i.unwrap()```
 ### smooth()
+在對解析樹進行很多操作後，可能會生成很多相鄰的```NavigableString```  
+可用```Tag.smooth()```清理樹並合併相鄰字串。  
+
 # Output
+
+
